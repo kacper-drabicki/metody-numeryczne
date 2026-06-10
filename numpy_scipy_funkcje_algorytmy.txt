@@ -1,0 +1,82 @@
+MAPOWANIE ALGORYTMÓW Z REPOZYTORIUM NA FUNKCJE NUMPY I SCIPY
+
+1. Znajdowanie pierwiastków równań nieliniowych (Rozdział 3 skryptu)
+   - Metoda bisekcji (bisekcja.py):
+     * scipy.optimize.bisect
+     * scipy.optimize.root_scalar(method='bisect')
+   - Metoda Newtona-Raphsona (newton-raphson.py, zadTren2.py):
+     * scipy.optimize.newton
+     * scipy.optimize.root_scalar(method='newton')
+   - Metoda Riddersa (ridders.py):
+     * scipy.optimize.ridder
+     * scipy.optimize.root_scalar(method='ridder')
+   - Metoda falsi (falsi.py):
+     * scipy.optimize.root_scalar(method='brentq' lub 'brenth' jako alternatywy bracketingowe)
+
+2. Algebra liniowa i układy równań (Rozdział 2 skryptu)
+   - Rozwiązywanie układów równań liniowych Ax = b / Eliminacja Gaussa (eliminacja-gaussa.py):
+     * numpy.linalg.solve
+     * scipy.linalg.solve
+   - Odwracanie macierzy (eliminacja-gaussa-m-odwrotna.py):
+     * numpy.linalg.inv
+     * scipy.linalg.inv
+   - Wyznacznik macierzy:
+     * numpy.linalg.det
+     * scipy.linalg.det
+   - Odwrotna iteracja (wartości i wektory własne) (odwrotna-iteracja.py):
+     * numpy.linalg.eig
+     * scipy.linalg.eig
+     * scipy.sparse.linalg.eigs (z użyciem parametru sigma dla przesunięcia/odwrotnej iteracji)
+   - Dekompozycja LU:
+     * scipy.linalg.lu
+     * scipy.linalg.lu_solve
+
+3. Interpolacja (Rozdział 4 skryptu)
+   - Interpolacja wielomianowa Lagrange'a (wielomian-lagrange.py):
+     * scipy.interpolate.lagrange
+   - Interpolacja funkcjami sklejanymi trzeciego stopnia / Cubic Spline (cubic-spline_DOKOŃCZYĆ.py):
+     * scipy.interpolate.CubicSpline
+     * scipy.interpolate.interp1d(kind='cubic')
+
+4. Całkowanie i różniczkowanie numeryczne (Rozdział 5 skryptu)
+   - Metoda Newtona-Cotesa / Trapezów (newton-cotes.py):
+     * scipy.integrate.trapezoid (dawniej numpy.trapz)
+     * scipy.integrate.newton_cotes (do wyznaczania wag)
+   - Metoda Simpsona:
+     * scipy.integrate.simpson
+   - Kwadratury Gaussa (zadTren3.py):
+     * scipy.integrate.quad (ogólne adaptacyjne całki kwadraturowe)
+     * scipy.integrate.fixed_quad (całkowanie stałego rzędu)
+     * numpy.polynomial.legendre.leggauss (węzły i wagi Gaussa-Legendre'a)
+   - Różniczkowanie numeryczne (Rozdziały 3.2 & 8.6):
+     * numpy.gradient
+     * scipy.misc.derivative
+
+5. Dopasowywanie krzywych i optymalizacja (Rozdział 8 skryptu)
+   - Minimalizacja / Algorytm Levenberga-Marquardta (minimalizacja.py):
+     * scipy.optimize.curve_fit (domyślnie algorytm LM przy braku ograniczeń)
+     * scipy.optimize.least_squares(method='lm')
+
+6. Równania różniczkowe zwyczajne (ODEs) (Rozdział 9 skryptu)
+   - Zagadnienie warunku początkowego / Schematy Rungego-Kutty (runge-kutty.py, zadTren4.py, zadTren5.py, zadTren6.py):
+     * scipy.integrate.solve_ivp (parametr method='RK45' realizuje adaptacyjny krok podobny do RK4/Fehlberga/Cash-Karpa)
+
+7. Analiza Fouriera i przetwarzanie sygnałów (Rozdział 7 skryptu)
+   - Dyskretna transformata Fouriera / FFT (transformata-fouriera.py):
+     * numpy.fft.fft
+     * scipy.fft.fft
+   - Odwrotna transformata Fouriera (IDFT):
+     * numpy.fft.ifft
+     * scipy.fft.ifft
+   - Splot (Convolution):
+     * numpy.convolve
+     * scipy.signal.convolve
+
+8. Narzędzia pomocnicze i statystyka
+   - Epsilon maszynowy (Rozdział 1):
+     * numpy.finfo(float).eps
+   - Test zgodności Chi-kwadrat (Rozdział 6):
+     * scipy.stats.chisquare
+   - Wielomiany Taylora (zadTren1.py, Rozdział 10.2):
+     * scipy.interpolate.ApproximateTaylorPolynomial
+     * numpy.polynomial.Polynomial
